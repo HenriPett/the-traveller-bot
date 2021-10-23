@@ -1,0 +1,17 @@
+org: henripett
+app: the-traveller
+service: the-traveller
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+
+functions:
+  cronHandler:
+    handler: handler.run
+    events:
+      # Invoke Lambda function every day at 7:30/19:30 (Brazil) from Mon-Fri
+      - schedule: cron(30 10,22 ? * MON-FRI *)
